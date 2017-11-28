@@ -1,0 +1,347 @@
+@border: #BFBFBF;
+@borderB: #888;
+@size: 11px;
+//定义字体
+@font-family: "microsoft yahei", "Helvetica Neue For Number", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+html,body,#main{
+  width:100%;
+  height:100%;
+  overflow: hidden;
+}
+.temperature-chart{
+  margin: 0 auto;
+  height:100%;
+}
+.show-detail {
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-corner,
+  &::-webkit-scrollbar-track {
+    background-color: #B7B7B7;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, .3);
+  }
+
+}
+
+.footBtn {
+  line-height: 28px;
+  text-align: left;
+  margin : 15px 0;
+  .ant-calendar-picker {
+    margin-right: 10px;
+  }
+}
+
+.temperature-chart {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  .ant-spin-nested-loading {
+    width: 100%;
+    height: 100%;
+    .ant-spin-container {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  th, td {
+    border: 1px solid @border;
+    position: relative;
+  }
+
+  .tempCartSvg {
+    position: relative;
+    height: 100%;
+  }
+  .fixed_div {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    border: 1px solid @borderB;
+    border-bottom: none;
+    overflow: hidden;
+  }
+
+  table.patInfo {
+    width: 100%;
+    font-size: @size;
+    border-bottom: none;
+  }
+  table.showInfo {
+    width: 100%;
+    font-size: @size;
+    border-bottom: none;
+  }
+  table.patInfo td {
+    border: none;
+  }
+  table.patInfo tr:nth-of-type(3) td,
+  table.patInfo tr:nth-of-type(4) td {
+    height: 14px;
+    line-height: 14px;
+  }
+  table.patInfo tr:nth-of-type(4) td {
+    border-bottom: 1px solid @border;
+  }
+  table.patInfo td h1 {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 5px;
+    letter-spacing: 2px;
+  }
+
+  table.patInfo td h3 {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 6px;
+  }
+
+  .bline {
+    border-bottom: 1px solid @border;
+    float: left;
+    width: 120px;
+    line-height: 12px;
+    height: 12px;
+    text-indent: 4px;
+    max-width: calc(~"100% - 83px");
+  }
+
+  .btitle {
+    float: left;
+    text-indent: 8px;
+  }
+  tr.percent4 td {
+    width: 25%;
+  }
+  .showInfo {
+    width: 100%;
+  }
+
+  .showInfo tr td {
+    text-align: center;
+    font-size: @size;
+    height: 14px;
+    line-height: 14px;
+  }
+  .showInfo tr:nth-of-type(4) td {
+    font-size: @size;
+  }
+  .showInfo tr {
+    height: 12px;
+  }
+  .showInfo tr:nth-of-type(1) td {
+    border-top: none;
+  }
+  .showInfo tr td:nth-of-type(1) {
+    border-left: none;
+    text-align: justify;
+    text-align-last: justify;
+    padding: 0 8px;
+  }
+
+  .showInfo tr td:last-of-type {
+    border-right: none;
+  }
+
+  .flow_div {
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: calc(~"100% - 51px");
+    max-height: calc(~"100% - 51px");
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid @borderB;
+    border-top: none;
+  }
+  .flow_div::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  table.tableSvg {
+    width: 100%;
+  }
+
+  table.tableSvg tr td {
+    font-size: @size;
+  }
+
+  table.tableSvg tr td:nth-of-type(1) {
+    font-size: @size;
+    text-align: center;
+    border-left: none;
+  }
+
+  table.tableSvg tr:nth-of-type(1) td:nth-of-type(1),
+  table.tableSvg tr:nth-of-type(1) td:last-of-type {
+    border-bottom: 1px solid @borderB;
+  }
+
+  table.tableSvg tr:last-of-type td {
+    border-bottom: none;
+  }
+
+  table.tableSvg tr td:last-of-type {
+    border-right: none;
+  }
+
+  table.tableSvg tr.height td:last-of-type {
+    // border-right: 1px solid red;
+  }
+
+  table.tableSvg tr:nth-of-type(1) td:last-of-type {
+    border-right: none;
+  }
+
+  table.tableSvg td {
+    text-align: center;
+  }
+
+  .scale {
+    width: 100%;
+    display: block;
+    transform: scale(0.8);
+  }
+  table tr.height {
+    height: 15px;
+  }
+  table tr.height td.hx {
+    height: 34px;
+  }
+  table tr.height:nth-of-type(1) td {
+    border-top: none;
+  }
+
+  tr.height td {
+    border: 1px solid @border;
+  }
+
+  tr td.borderR, tr.height td.borderR {
+    border-right: 1px solid red;
+  }
+
+  tr.height.borderT td, tr.borderT td {
+    border-top: 1px solid red;
+  }
+
+  tr.height.borderB td,
+  tr.borderB td,
+  tr.height td.borderB {
+    border-bottom: 1px solid @borderB;
+  }
+
+  .svgCenter {
+    position: absolute;
+    width: 100%;
+    /*height:100%;*/
+    z-index: 100;
+    //display:none;
+  }
+
+  #svgCenter {
+    position: absolute;
+    top: 0;
+    left: 100px;
+    width: calc(~"100% - 160px");
+    height: 100%;
+  }
+
+  .fontSet {
+    -webkit-transform: scaleX(0.99);
+  }
+
+  #titleTr tr:nth-of-type(2) td {
+    padding-bottom: 3px;
+  }
+  .svgLeft, .svgRight, #svgLeft, #svgRight {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #svgTitle {
+    background: #FFF;
+    border: 1px solid @border;
+    padding: 1px 6px;
+    color: #3C3C3C;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    position: absolute;
+    z-index: 1000;
+    display: none;
+  }
+  [line] {
+    cursor: pointer;
+  }
+
+  /* 打印样式调整 */
+  .container.print table tr.height {
+    height: 15px;
+  }
+  .container.print .footBtn {
+    display: none;
+  }
+  .container.print .scale {
+    transform: scale(1);
+  }
+  .container.print .patInfo td {
+    height: 17px;
+    line-height: 17px;
+    font-size: @size;
+  }
+  .container.print .showInfo td {
+    height: 15px;
+    line-height: 15px;
+    font-size: @size;
+  }
+  .container.alone.print tr.every td {
+    line-height: 15px;
+    font-size: @size
+  }
+  .container.alone.print .tableSvg tr.addClone {
+    height: 15px;
+  }
+  .container.print .flow_div {
+    max-height: inherit;
+  }
+  text {
+    font-size: @size;
+  }
+  .container.print text {
+    font-size: @size;
+  }
+  //svg样式
+  circle, rect, line {
+    cursor: pointer;
+  }
+}
+
+.ant-tooltip-inner {
+  background: #FFF;
+  font-size: 11px;
+  font-family: @font-family;
+  line-height: 15px !important;
+  min-height: 15px !important;
+  padding: 5px 10px !important;
+}

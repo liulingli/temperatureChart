@@ -1,0 +1,24 @@
+{
+  "presets": [
+    [
+      "latest", {
+      "es2015": {
+        "modules": false
+      }
+    }
+    ],
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "lib",
+        "style": "css"
+      }
+    ]
+  ]
+}
