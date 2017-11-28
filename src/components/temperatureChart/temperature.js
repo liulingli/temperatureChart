@@ -266,92 +266,89 @@ export class Temperature extends Component {
                 }]
             },// 时间段录入信息
             loading: false
-    }
-}
-
-componentDidMount()
-{
-    let {beginDate, data} = this.state;
-    this.fetchData(data, beginDate);
-}
-
-componentWillReceiveProps(nextProps, nextState)
-{
-    if (nextProps.data !== nextState.data) {
-        this.setState({
-            data: nextProps.data,
-            beginDate: nextProps.data.clinicDate,
-        })
-    }
-    let {beginDate, data} = this.state;
-    this.fetchData(data, beginDate);
-}
-
-/* 请求患者体温单数据 */
-fetchData = (data, beginDate) => {
-    return;
-    let param = {
-        patientId: data.patientId,
-        visitId: data.clinicNo,
-        hspCode: data.hspCode,
-        timeType: 4,
-        time: beginDate
-    };
-    //console.log(param)
-    fetch("/caseHistory/patientTemperature/getHspPatientTemperature", {
-        method: "POST",
-        body: qs.stringify(param)
-    }).then(response => {
-        if (response.success) {
-            let data = eval("(" + response.data + ")");
-            let patientList = data.data.patientsInfo;
-            let dataList = data.data.dataList;
-            let dayMap = data.data.dayMap;
-            //console.log("beginDay:"+dataList.beginDay)
-            this.setState({
-                patientList: patientList || {},
-                beginDate: dataList.beginDay,
-                dayOps: dataList.dayOps || [],
-                dayList: dataList.dayList || [],
-                breathingList: dataList.breathingList || [],
-                dayMap: dataList.dayMap || {},
-                pointTime: dataList.pointTime || {},
-                loading: false
-            })
-        } else {
-            this.setState({
-                loading: false
-            });
-            throw new Error(response.message);
         }
-    });
-}
-/**
- * 改变开始时间
- */
-changeBeginDay = (newDate) => {
-    if (newDate !== this.state.beginDate) {
-        let {data} = this.state;
-        this.fetchData(data, newDate);
     }
-}
 
-render()
-{
-    let {loading, data, beginDate, patientList, dayOps, breathingList, dayList, dayMap, pointTime} = this.state;
-    return (
-        <TemperatureChart
-            beginDate={beginDate}
-            hospital={data.hspName}
-            patientList={patientList}
-            dayOps={dayOps}
-            breathingList={breathingList}
-            dayList={dayList}
-            dayMap={dayMap}
-            pointTime={pointTime}
-            changeBeginDay={this.changeBeginDay}
-            loading={loading}
-        />
-    )
-}
+    componentDidMount() {
+        let {beginDate, data} = this.state;
+        this.fetchData(data, beginDate);
+    }
+
+    componentWillReceiveProps(nextProps, nextState) {
+        if (nextProps.data !== nextState.data) {
+            this.setState({
+                data: nextProps.data,
+                beginDate: nextProps.data.clinicDate,
+            })
+        }
+        let {beginDate, data} = this.state;
+        this.fetchData(data, beginDate);
+    }
+
+    /* 请求患者体温单数据 */
+    fetchData = (data, beginDate) => {
+        return;
+        let param = {
+            patientId: data.patientId,
+            visitId: data.clinicNo,
+            hspCode: data.hspCode,
+            timeType: 4,
+            time: beginDate
+        };
+        //console.log(param)
+        fetch("/caseHistory/patientTemperature/getHspPatientTemperature", {
+            method: "POST",
+            body: qs.stringify(param)
+        }).then(response => {
+            if (response.success) {
+                let data = eval("(" + response.data + ")");
+                let patientList = data.data.patientsInfo;
+                let dataList = data.data.dataList;
+                let dayMap = data.data.dayMap;
+                //console.log("beginDay:"+dataList.beginDay)
+                this.setState({
+                    patientList: patientList || {},
+                    beginDate: dataList.beginDay,
+                    dayOps: dataList.dayOps || [],
+                    dayList: dataList.dayList || [],
+                    breathingList: dataList.breathingList || [],
+                    dayMap: dataList.dayMap || {},
+                    pointTime: dataList.pointTime || {},
+                    loading: false
+                })
+            } else {
+                this.setState({
+                    loading: false
+                });
+                throw new Error(response.message);
+            }
+        });
+    }
+    /**
+     * 改变开始时间
+     */
+    changeBeginDay = (newDate) => {
+        if (newDate !== this.state.beginDate) {
+            let {data} = this.state;
+            this.fetchData(data, newDate);
+        }
+    }
+
+    render() {
+        let {loading, data, beginDate, patientList, dayOps, breathingList, dayList, dayMap, pointTime} = this.state;
+        return (
+            <TemperatureChart
+                beginDate={beginDate}
+                hospital={data.hspName}
+                patientList={patientList}
+                dayOps={dayOps}
+                breathingList={breathingList}
+                dayList={dayList}
+                dayMap={dayMap}
+                pointTime={pointTime}
+                changeBeginDay={this.changeBeginDay}
+                loading={loading}
+            />
+        )
+    }
 }
